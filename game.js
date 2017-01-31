@@ -8,5 +8,10 @@ var ctx = canvas.getContext && canvas.getContext('2d');
 		startGame();
 	}
 	function startGame() {
-		
+		ctx.fillStyle = "#ffff00";
+		ctx.fillRect(50,100,380,400);
+
+		// Second, semi-transparent blue rectangle
+		ctx.fillStyle = "rgba(0,0,128,0.6)";
+		ctx.fillRect(0,50,380,400);
 	}
