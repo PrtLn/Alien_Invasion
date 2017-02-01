@@ -23,7 +23,7 @@ var SpriteSheet = new function() {
 
 function startGame() {
 	SpriteSheet.load({
-		ship: {sx: 0, sy: 0, w: 50, h: 90, frames: 3} // drawImage(img, 150, 0, 50, 90, 100, 100, 50, 80);
+		ship: {sx: 0, sy: 0, w: 50, h: 85, frames: 3}
 	}, function() {
 		SpriteSheet.draw(ctx, "ship", 0, 0);
 		SpriteSheet.draw(ctx, "ship", 100, 50);
@@ -80,7 +80,7 @@ var Game = new function() {
 	var boards =[];
 	this.loop = function() {
 		var dt = 30 / 1000;
-		for (var i = 0; len = boards.length; i < len; i++) {
+		for (var i = 0, len = boards.length; i < len; i++) {
 			if (boards[i]) {
 				boards[i].step(dt);
 				boards[i] && boards[i].draw(Game.ctx);
