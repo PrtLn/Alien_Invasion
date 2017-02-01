@@ -1,0 +1,33 @@
+// the SpriteSheet class
+var SpriteSheet = new function() {
+	this.map = {};
+	this.load = function(spriteData, callback) {
+		this.map = spriteData;
+		this.image = new Image();
+		this.image.onload = callback;
+		this.image.src = 'images/sprites.png';
+	};
+	this.draw = function(ctx, sprite, x, y, frame) {
+		var s = this.map[sprite];
+		if (!frame) {
+			frame = 0;
+		}
+		ctx.drawImage(this.image,
+						s.sx + frame * s.w,
+						s.sy,
+						s.w, s.h,
+						x, y,
+						s.w, s.h);
+	};
+}
+
+function startGame() {
+	SpriteSheet.load({
+		ship: {sx: 0, sy: 0, w: 50, h: 90, frames: 3} // drawImage(img, 150, 0, 50, 90, 100, 100, 50, 80);
+	}, function() {
+		SpriteSheet.draw(ctx, "ship", 0, 0);
+		SpriteSheet.draw(ctx, "ship", 100, 50);
+		SpriteSheet.draw(ctx, "ship", 150, 100, 1);
+	});
+}
+
