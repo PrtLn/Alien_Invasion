@@ -13,7 +13,8 @@ var startGame = function() {
 }
 
 var playGame = function() {
-	Game.setBoard(3, new TitleScreen("Alien Invasion", "Game Started..."));
+	// Game.setBoard(3, new TitleScreen("Alien Invasion", "Game Started..."));
+	Game.setBoard(3, new PlayerShip());
 }
 
 window.addEventListener("load" ,function() {
@@ -73,5 +74,22 @@ var Starfield = function(speed, opacity, numStars, clear) {
 	this.step = function(dt) {
 		offset += dt * speed;
 		offset = offset % stars.height;
+	}
+}
+
+// The PlayerShip class
+var PlayerShip = function() {
+	this.w = SpriteSheet.map['ship'].w;
+	this.h = SpriteSheet.map['ship'].h;
+	this.x = Game.width/2 - this.w/2;
+	this.y = Game.height - 10 - this.h;
+	this.vx = 0;
+
+	this.step = function(dt) {
+		// TODO: addad thr next section 
+	}
+
+	this.draw = function(ctx) {
+		SpriteSheet.draw(ctx, 'ship', this.x, this.y, 1);
 	}
 }
