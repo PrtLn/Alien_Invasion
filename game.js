@@ -24,3 +24,25 @@ window.addEventListener("load" ,function() {
 						 2,
 						 2);	
 	}
+
+	// Draw method that called every frame to draw the starfield onto the canvas
+	this.draw = function(ctx) {
+		var intOffset = Math.floor(offset);
+		var remaining = stars.height - intOffset;
+		// Draw the top half of the starfield
+		if (intOffset > 0) {
+			ctx.drawImage(stars,
+						0, remaining,
+						stars.width, intOffset,
+						0, 0,
+						stars.width, intOffset);
+		}
+		// Draw the bottom half of the starfield
+		if (remaining > 0) {
+			ctx.drawImage(stars,
+						0, 0,
+						stars.width, remaining,
+						0, intOffset,
+						stars.width, remaining);
+		}
+	}
