@@ -95,3 +95,23 @@ var Game = new function() {
 	};
 };
 
+// The TitleScreen class
+var TitleScreen = function TitleScreen(title, subtitle, callback) {
+	this.step = function(dt) {
+		if (Game.keys['fire'] && callback) callback();
+	};
+
+	this.draw = function(ctx) {
+		ctx.fillStyle = "#FFF";
+		ctx.textAlign = "center";
+
+		// title
+		ctx.font = "bold 40px bangers";
+		ctx.fillText(title, Game.width/2, Game.height/2);
+
+		// subtitle
+		ctx.font = "bold 20px bangers";
+		ctx.fillText(subtitle, Game.width/2, Game.height/2 + 40);
+	};
+}
+

@@ -3,10 +3,19 @@ var sprites = {
 };
 var startGame = function() {
 	// launch the starfield, adding three starfields of varying opacity 
-	Game.setBoard(0,new Starfield(20, 0.4, 100, true))
-	Game.setBoard(1,new Starfield(50, 0.6, 100))
-	Game.setBoard(2,new Starfield(100, 1.0, 50));
+	Game.setBoard(0, new Starfield(20, 0.4, 100, true))
+	Game.setBoard(1, new Starfield(50, 0.6, 100))
+	Game.setBoard(2, new Starfield(100, 1.0, 50));
+	// Drawing a Title on Canvas
+	Game.setBoard(3, new TitleScreen("Alien Invasion",
+									"Press space to start playing",
+									playGame));
 }
+
+var playGame = function() {
+	Game.setBoard(3, new TitleScreen("Alien Invasion", "Game Started..."));
+}
+
 window.addEventListener("load" ,function() {
 	Game.initialize("game", sprites, startGame);
 });
