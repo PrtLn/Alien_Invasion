@@ -2,7 +2,10 @@ var sprites = {
 	ship: {sx: 0, sy: 0, w: 50, h: 85, frames: 3}
 };
 var startGame = function() {
-	SpriteSheet.draw(Game.ctx, "ship", 100, 100, 1);
+	// launch the starfield, adding three starfields of varying opacity 
+	Game.setBoard(0,new Starfield(20, 0.4, 100, true))
+	Game.setBoard(1,new Starfield(50, 0.6, 100))
+	Game.setBoard(2,new Starfield(100, 1.0, 50));
 }
 window.addEventListener("load" ,function() {
 	Game.initialize("game", sprites, startGame);
@@ -16,7 +19,7 @@ var Starfield = function(speed, opacity, numStars, clear) {
 	stars.width = Game.width;
 	stars.height = Game.height;
 
-	var startx = stars.getContext("2d");
+	var starCtx = stars.getContext("2d");
 	var offset = 0;
 
 	// If the clear option is set, make the background black instead of transparent
@@ -28,7 +31,7 @@ var Starfield = function(speed, opacity, numStars, clear) {
 	// Drawing stars (draw a brunch of random 2 pixel rectangles onto the offscreen canvas)
 	starCtx.fillStyle = "#FFF";
 	starCtx.globalAlpha = opacity;
-	for (var i = 0, i < numStars; i++) {
+	for (var i = 0; i < numStars; i++) {
 		starCtx.fillRect(Math.floor(Math.random() * stars.width),
 						 Math.floor(Math.random() * stars.height),
 						 2,
