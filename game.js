@@ -86,7 +86,26 @@ var PlayerShip = function() {
 	this.vx = 0;
 
 	this.step = function(dt) {
-		// TODO: addad thr next section 
+
+		// Handling User Input
+		this.maxVel = 200;
+		this.step = function(dt) {
+			if(Game.keys['left']) {
+				this.vx = -this.maxVel;
+			} else if (Game.keys['right']) {
+				this.vx = this.maxVel;
+			} else {
+				this.vx = 0;
+			}
+			
+			this.x += this.vx * dt;
+
+			if (this.x < 0) {
+				this.x = 0;
+			} else if (this.x > Game.width - this.w) {
+				this.x = Game.width - this.w;
+			}
+		}
 	}
 
 	this.draw = function(ctx) {
