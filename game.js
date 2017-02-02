@@ -7,3 +7,10 @@ var startGame = function() {
 window.addEventListener("load" ,function() {
 	Game.initialize("game", sprites, startGame);
 });
+
+// Set up the offscreen canvas
+	var stars = document.createElement("canvas");
+	stars.width = Game.width;
+	stars.height = Game.height;
+
+	var startx = stars.getContext("2d");
