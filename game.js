@@ -8,12 +8,22 @@ window.addEventListener("load" ,function() {
 	Game.initialize("game", sprites, startGame);
 });
 
+// the Starfield class
+var Starfield = function(speed, opacity, numStars, clear) {
+
 // Set up the offscreen canvas
 	var stars = document.createElement("canvas");
 	stars.width = Game.width;
 	stars.height = Game.height;
 
 	var startx = stars.getContext("2d");
+	var offset = 0;
+
+	// If the clear option is set, make the background black instead of transparent
+	if (clear) {
+		starCtx.fillStyle = "#000";
+		starCtx.fillRect(0, 0, stars.width, stars.height);
+	}
 
 	// Drawing stars (draw a brunch of random 2 pixel rectangles onto the offscreen canvas)
 	starCtx.fillStyle = "#FFF";
@@ -46,3 +56,10 @@ window.addEventListener("load" ,function() {
 						stars.width, remaining);
 		}
 	}
+
+	// The method is called to update the starfield
+	this.step = function(dt) {
+		offset += dt * speed;
+		offset = offset % stars.height;
+	}
+}
